@@ -7,10 +7,11 @@ var maxTweetChars = 140;
     const tweetCharsRemaining = (maxTweetChars - $(this).val().length);
     $(this).siblings(".counter").text(tweetCharsRemaining.toString());
     if(tweetCharsRemaining < 0){
-      $(this).siblings(".counter").attr("style","color:red");
+      $(this).siblings(".counter").addClass("negNumber");
+      $(this).siblings(".counter").removeClass("posNumber")
     } else {
-      $(this).siblings(".counter").attr("style","color:black");
+      $(this).siblings(".counter").removeClass("negNumber");
+      $(this).siblings(".counter").addClass("posNumber");
     }
-
   });
 });

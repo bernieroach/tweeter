@@ -39,3 +39,12 @@ padding-left:   3em;
   display: block;
   padding: 5px;
 }
+
+.negNumber {
+  color: red;
+}
+
+.posNumber {
+  color: black;
+}
+
