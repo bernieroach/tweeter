@@ -184,16 +184,31 @@ const createTweetElement = (tweet) => {
 };
 
 const renderTweets = (tweets) =>{
+   $("article").remove();
   tweets.forEach((tweet) =>{
     $('#tweets-container').append(createTweetElement(tweet));
   });
 };
 
 
+const loadTweets = () =>{
+
+      $.ajax({
+      url: 'tweets',
+      method: 'GET',
+      success: function (tweets) {
+          renderTweets(tweets);
+        }
+      });
+
+};
+
+
 $(()=>{
   console.log("dom load");
 
-renderTweets(data);
+loadTweets();
+//renderTweets(data);
 // var $tweet = createTweetElement(tweetData);
 // console.log($tweet);
 // $('#tweets-container').append($tweet);

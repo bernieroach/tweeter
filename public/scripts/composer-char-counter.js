@@ -27,6 +27,7 @@ var maxTweetChars = 140;
        method: 'POST',
        success: function (succ) {
          console.log('Success: ', succ);
+         loadTweets();
       }
     });
 });
