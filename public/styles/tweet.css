@@ -1,22 +1,18 @@
 .new-tweet {
- margin: 20px;
-
- border-radius: 10px;
-    border: 1px solid #000000;
- background-color: #eee;
-
- padding-top: 1em;
-padding-bottom: 3em;
-padding-right: 3em;
-padding-left:   3em;
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  background-color: #eee;
+  padding-top: 1em;
+  padding-bottom: 3em;
+  padding-right: 3em;
+  padding-left:   3em;
 }
 
 .new-tweet h2 {
-
  border-bottom: 2px solid;
  width: 100%;
  text-align: left;
-
 }
 
 .new-tweet .counter {
@@ -24,7 +20,6 @@ padding-left:   3em;
   text-align: right;
   float: right;
   margin-top: 10px
-
 }
 
 .new-tweet input {
@@ -38,6 +33,101 @@ padding-left:   3em;
   width: 100%;
   display: block;
   padding: 5px;
+}
+
+
+/*.tweet article:before,
+.tweet article:after {
+  content: "";
+  display: table;
+}
+.tweet article:after {
+  clear: both;
+}
+*/
+
+
+
+.tweet{
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  text-align: left;
+}
+.tweet .avatar{
+  width: 80px;
+  height: 80px;
+  margin: 0px;
+  vertical-align: top;
+}
+
+.tweet h2 {
+ text-align: left;
+ margin: 2px;
+}
+
+
+
+.tweet header{
+  margin: 0px;
+  border-bottom : 1px solid #000000;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 5px;
+  background-color: #eee;
+  z-index: 1;
+
+}
+
+.tweet header > *{
+  display: block;
+  margin: 0px;
+}
+
+.tweet > * {
+  padding:5px;
+}
+
+
+.tweet header table {
+  width: inherit;
+  table-layout:fixed;
+  display: table;
+}
+
+.tweet header table tbody {
+  width: 100%;
+}
+
+.tweet header table tbody tr {
+  width: 100%;
+}
+
+.tweet header table tbody td {
+  word-wrap: break-word;
+  word-break: break-all;
+  vertical-align: top;
+}
+.tweet footer{
+  border-top: 1px solid #000000;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.tweet body {
+  border: 0.5px solid #000000;
+
+}
+.tweet footer > * {
+  margin-bottom: 2px;
+}
+
+.tweet .handle {
+  text-align: right;
+  width: 80px;
+  vertical-align: top;
+  float: right;
+  display: inline;
 }
 
 .negNumber {
