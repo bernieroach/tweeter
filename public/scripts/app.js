@@ -119,6 +119,9 @@ const createTweetElement = (tweet) => {
 // go through the list of tweets, create a tweet and append to the list
 const renderTweets = (tweets) =>{
    $("article").remove();
+   tweets.sort((a,b)=>{
+    return b.created_at - a.created_at;
+   });
   tweets.forEach((tweet) =>{
     $('#tweets-container').append(createTweetElement(tweet));
   });
@@ -136,6 +139,16 @@ const loadTweets = () =>{
       });
 
 };
+
+const updateTweet = () =>{
+      $.ajax({
+      url: 'tweets',
+      method: 'GET',
+      success: function (tweets) {
+          renderTweets(tweets);
+        }
+      });
+}
 
 // DOM loaded, update with tweets
 $(()=>{
