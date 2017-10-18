@@ -81,7 +81,7 @@ var data = [
       "handle": "@SirIsaac"
     },
     "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
+      "text": "<script>alert('uh oh!');</script>"
     },
     "created_at": 1461116232227
   },

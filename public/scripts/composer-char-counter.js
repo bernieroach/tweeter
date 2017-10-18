@@ -14,4 +14,21 @@ var maxTweetChars = 140;
       $(this).siblings(".counter").addClass("posNumber");
     }
   });
+// prevent the button from sending POST
+ $("input").on("click", function(event){
+  debugger;
+  event.preventDefault();
+  console.log($(this).parent().serialize());
+
+ //  var $tweeterFeed = $('#tweets-container');
+ //    $.ajax({
+ //      url: 'more-posts.html',
+ //      method: 'GET',
+ //      success: function (morePostsHtml) {
+ //        console.log('Success: ', morePostsHtml);
+
+ // }});
 });
+});
+
+
