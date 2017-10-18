@@ -117,38 +117,37 @@ const createTweetElement = (tweet) => {
 
 // refresh the tweet list
 // go through the list of tweets, create a tweet and append to the list
-const renderTweets = (tweets) =>{
-   $("article").remove();
+const renderTweets = (tweets,mode) =>{
+
    tweets.sort((a,b)=>{
     return b.created_at - a.created_at;
    });
-  tweets.forEach((tweet) =>{
+   if(mode === "update"){
+    debugger;
+    $('article').first().prepend(createTweetElement(tweets[0]));
+
+   } else {
+    $("article").remove();
+    tweets.forEach((tweet) =>{
     $('#tweets-container').append(createTweetElement(tweet));
-  });
+      });
+    }
 };
 
 // ajax call to get the tweets
-const loadTweets = () =>{
+const loadTweets = (mode) =>{
 
       $.ajax({
       url: 'tweets',
       method: 'GET',
       success: function (tweets) {
-          renderTweets(tweets);
+          renderTweets(tweets,mode);
         }
       });
 
 };
 
-const updateTweet = () =>{
-      $.ajax({
-      url: 'tweets',
-      method: 'GET',
-      success: function (tweets) {
-          renderTweets(tweets);
-        }
-      });
-}
+
 
 // DOM loaded, update with tweets
 $(()=>{

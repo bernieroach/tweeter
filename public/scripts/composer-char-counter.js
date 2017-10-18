@@ -26,9 +26,8 @@ const inputThis = this;
        data: $(this).parent().serialize(),
        method: 'POST',
        success: function (succ) {
-         debugger
          console.log('Success: ', succ);
-          loadTweets();
+          loadTweets('update');
           $(inputThis).siblings("textarea").val("");
           }
         });
