@@ -27,7 +27,7 @@ body {
 main {
 
  width: 450px;
-
+ word-wrap: break-word;
  margin: auto;
  align-content: center;
  align-self: center;
@@ -35,6 +35,8 @@ main {
  text-align: center;
  background-color: white;
 }
+
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */

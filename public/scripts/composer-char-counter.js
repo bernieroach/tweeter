@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-var maxTweetChars = 140;
+const maxTweetChars = 140;
 
 // on textarea input countdown/up the char length available in the counter
   $(".new-tweet textarea").on("input",function(event){
@@ -18,18 +18,27 @@ var maxTweetChars = 140;
  $("input").on("click", function(event){
 
   event.preventDefault();
-  console.log($(this).parent().serialize());
-
- //  var $tweeterFeed = $('#tweets-container');
+const inputThis = this;
+  if($(this).siblings("textarea").val().length){
+     if(parseInt($(this).siblings(".counter").text()) >= 0 ){
      $.ajax({
        url: '/tweets',
        data: $(this).parent().serialize(),
        method: 'POST',
        success: function (succ) {
          console.log('Success: ', succ);
-         loadTweets();
-      }
-    });
+          loadTweets();
+          $(inputThis).siblings("textarea").val("");
+          }
+        });
+     } else {
+      alert(`tweets can only be ${maxTweetChars} long`);
+     }
+  } else {
+    alert("please enter something for your tweet");
+  }
+
+
 });
 });
 
