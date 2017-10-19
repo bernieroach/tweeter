@@ -1,5 +1,13 @@
+// Tweeter W3 LHL project
+// Author Bernard Roach
+// date Oct 19, 2017
+// Tweeter clone webpage to practice CSS styling, AJAX calls, and MongoDB
+// DOM loaded, update with tweets
 
+// load this stuff after the DOM is ready/loaded
+$(document).ready(function(){
 
+// function to calculate time since now and datetime stamp
 function calculateSince(datetime)
 {
   var tTime=new Date(datetime);
@@ -46,6 +54,8 @@ function calculateSince(datetime)
   return since;
 };
 
+
+// create a Tweet Element
 const createTweetElement = (tweet) => {
   let $article = "";
   let $header = "";
@@ -108,18 +118,21 @@ const createTweetElement = (tweet) => {
     $article.append($footer);
 
   };
+// return the article sub DOM
   return $article;
 };
 
-// refresh the tweet list
-// go through the list of tweets, create a tweet and append to the list
+
 const renderTweets = (tweets) =>{
 
+
+// refresh the tweet list on the screen
    tweets.sort((a,b)=>{
     return b.created_at - a.created_at;
    });
 
     $("article").remove();
+// go through the list of tweets, create a tweet and append to the list
     tweets.forEach((tweet) =>{
     $('#tweets-container').append(createTweetElement(tweet));
       });
@@ -140,10 +153,33 @@ const loadTweets = () =>{
 };
 
 
+// prevent the button from sending POST
+ $("input").on("click", function(event){
+  event.preventDefault();
+  const inputThis = this;
+  if($(this).siblings("textarea").val().length){
+     if(parseInt($(this).siblings(".counter").text()) >= 0 ){
+     $.ajax({
+       url: '/tweets',
+       data: $(this).parent().serialize(),
+       method: 'POST',
+       success: function (succ) {
+         console.log('Success: ', succ);
+          loadTweets();
+          $(inputThis).siblings("textarea").val("");
+          }
+        });
+     } else {
+      alert(`tweets can only be ${maxTweetChars} long`);
+     }
+  } else {
+    alert("please enter something for your tweet");
+  }
 
-// DOM loaded, update with tweets
-$(()=>{
 
+});
+
+// load the Tweets!
 loadTweets();
 
 });

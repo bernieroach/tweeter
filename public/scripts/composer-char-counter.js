@@ -14,33 +14,8 @@ const maxTweetChars = 140;
       $(this).siblings(".counter").addClass("posNumber");
     }
   });
-// prevent the button from sending POST
- $("input").on("click", function(event){
-  event.preventDefault();
-  const inputThis = this;
-  if($(this).siblings("textarea").val().length){
-     if(parseInt($(this).siblings(".counter").text()) >= 0 ){
-     $.ajax({
-       url: '/tweets',
-       data: $(this).parent().serialize(),
-       method: 'POST',
-       success: function (succ) {
-         console.log('Success: ', succ);
-          loadTweets('update');
-          $(inputThis).siblings("textarea").val("");
-          }
-        });
-     } else {
-      alert(`tweets can only be ${maxTweetChars} long`);
-     }
-  } else {
-    alert("please enter something for your tweet");
-  }
 
-
-});
-
- $(".toggle").on("click", function(event){
+  $(".toggle").on("click", function(event){
   $("#tweet-box").slideToggle();
   $("textarea").select();
 
