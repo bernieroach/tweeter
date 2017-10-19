@@ -40,6 +40,18 @@ const inputThis = this;
 
 
 });
+
+ $(".toggle").on("click", function(event){
+  if($(this).attr("show") === "true"){
+     $("#tweet-box").attr("style","display:none");
+     $(this).attr("show","false");
+  } else {
+     $("#tweet-box").attr("style","display:all");
+     $(this).attr("show","true");
+
+  }
+ });
+
 });
 
 

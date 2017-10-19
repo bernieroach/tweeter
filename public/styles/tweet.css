@@ -1,4 +1,5 @@
 .new-tweet {
+
   margin: 20px;
   border-radius: 10px;
   border: 1px solid #000000;
@@ -7,7 +8,10 @@
   padding-bottom: 3em;
   padding-right: 3em;
   padding-left:   3em;
+
 }
+
+
 
 .new-tweet h2 {
  border-bottom: 2px solid;
