@@ -48,4 +48,10 @@
   font-size: 24pt;
 }
 
+.hide {
+  display: none;
+}
 
+.show {
+  display: all;
+}

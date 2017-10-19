@@ -16,9 +16,8 @@ const maxTweetChars = 140;
   });
 // prevent the button from sending POST
  $("input").on("click", function(event){
-
   event.preventDefault();
-const inputThis = this;
+  const inputThis = this;
   if($(this).siblings("textarea").val().length){
      if(parseInt($(this).siblings(".counter").text()) >= 0 ){
      $.ajax({
@@ -43,11 +42,15 @@ const inputThis = this;
 
  $(".toggle").on("click", function(event){
   if($(this).attr("show") === "true"){
-     $("#tweet-box").attr("style","display:none");
-     $(this).attr("show","false");
+
+    $("#tweet-box").addClass("hide");
+    $("#tweet-box").removeClass("show")
+    $(this).attr("show","false");
   } else {
-     $("#tweet-box").attr("style","display:all");
-     $(this).attr("show","true");
+
+    $("#tweet-box").removeClass("hide");
+    $("#tweet-box").addClass("show")
+    $(this).attr("show","true");
 
   }
  });
