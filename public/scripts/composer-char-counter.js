@@ -41,18 +41,9 @@ const maxTweetChars = 140;
 });
 
  $(".toggle").on("click", function(event){
-  if($(this).attr("show") === "true"){
+  $("#tweet-box").slideToggle();
+  $("textarea").select();
 
-    $("#tweet-box").addClass("hide");
-    $("#tweet-box").removeClass("show")
-    $(this).attr("show","false");
-  } else {
-
-    $("#tweet-box").removeClass("hide");
-    $("#tweet-box").addClass("show")
-    $(this).attr("show","true");
-
-  }
  });
 
 });

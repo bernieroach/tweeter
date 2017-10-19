@@ -1,8 +1,4 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
+
 
 function calculateSince(datetime)
 {
@@ -117,31 +113,27 @@ const createTweetElement = (tweet) => {
 
 // refresh the tweet list
 // go through the list of tweets, create a tweet and append to the list
-const renderTweets = (tweets,mode) =>{
+const renderTweets = (tweets) =>{
 
    tweets.sort((a,b)=>{
     return b.created_at - a.created_at;
    });
-   if(mode === "update"){
-    debugger;
-    $('article').first().prepend(createTweetElement(tweets[0]));
 
-   } else {
     $("article").remove();
     tweets.forEach((tweet) =>{
     $('#tweets-container').append(createTweetElement(tweet));
       });
-    }
+
 };
 
 // ajax call to get the tweets
-const loadTweets = (mode) =>{
+const loadTweets = () =>{
 
       $.ajax({
       url: 'tweets',
       method: 'GET',
       success: function (tweets) {
-          renderTweets(tweets,mode);
+          renderTweets(tweets);
         }
       });
 
