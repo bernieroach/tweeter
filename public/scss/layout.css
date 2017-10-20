@@ -1,0 +1,22 @@
+html {
+  box-sizing: border-box;
+  margin-top: 0px; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+body {
+  margin-top: 90px;
+  color: #244751;
+  background-color: #eee;
+  font-family: "Roboto Condensed", sans-serif; }
+
+main {
+  width: 450px;
+  word-wrap: break-word;
+  margin: auto;
+  align-content: center;
+  align-self: center;
+  z-index: 100;
+  text-align: center;
+  background-color: white; }
