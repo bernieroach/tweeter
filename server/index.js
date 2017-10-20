@@ -1,7 +1,12 @@
+// Tweeter W3 LHL project
+// Author Bernard Roach
+// date Oct 19, 2017
+// Tweeter clone webpage to practice CSS styling, AJAX calls, and MongoDB
+// DOM loaded, update with tweets
+
 "use strict";
 
 // Basic express setup:
-
 const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
@@ -20,7 +25,6 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     console.error(`Failed to connect: ${MONGODB_URI}`);
     throw err;
   }
-
 
   console.log(`Connected to mongodb: ${MONGODB_URI}`);
   const DataHelpers = require("./lib/data-helpers.js")(db);

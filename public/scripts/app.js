@@ -4,55 +4,10 @@
 // Tweeter clone webpage to practice CSS styling, AJAX calls, and MongoDB
 // DOM loaded, update with tweets
 
+
 // load this stuff after the DOM is ready/loaded
 $(document).ready(function(){
 
-// function to calculate time since now and datetime stamp
-function calculateSince(datetime)
-{
-  var tTime=new Date(datetime);
-  var cTime=new Date();
-  var sinceMin=Math.round((cTime-tTime)/60000);
-  if(sinceMin==0)
-  {
-      var sinceSec=Math.round((cTime-tTime)/1000);
-      if(sinceSec<10)
-        var since='less than 10 seconds ago';
-      else if(sinceSec<20)
-        var since='less than 20 seconds ago';
-      else
-        var since='half a minute ago';
-  }
-  else if(sinceMin==1)
-  {
-      var sinceSec=Math.round((cTime-tTime)/1000);
-      if(sinceSec==30)
-        var since='half a minute ago';
-      else if(sinceSec<60)
-        var since='less than a minute ago';
-      else
-        var since='1 minute ago';
-  }
-  else if(sinceMin<45)
-      var since=sinceMin+' minutes ago';
-  else if(sinceMin>44&&sinceMin<60)
-      var since='about 1 hour ago';
-  else if(sinceMin<1440){
-      var sinceHr=Math.round(sinceMin/60);
-  if(sinceHr==1)
-    var since='about 1 hour ago';
-  else
-    var since='about '+sinceHr+' hours ago';
-  }
-  else if(sinceMin>1439&&sinceMin<2880)
-      var since='1 day ago';
-  else
-  {
-      var sinceDay=Math.round(sinceMin/1440);
-      var since=sinceDay+' days ago';
-  }
-  return since;
-};
 
 
 // create a Tweet Element
@@ -65,6 +20,7 @@ const createTweetElement = (tweet) => {
   let $img = "";
   let $body = "";
   let $footer = "";
+
   if(tweet){
 
 // build the header
@@ -103,7 +59,7 @@ const createTweetElement = (tweet) => {
     $hdTable = $("<table>").attr("width","100%");
     $rowTable = $("<tr>");
     $colTable = $("<td>");
-    $colTable.append($("<p>").text(calculateSince(tweet.created_at)));
+    $colTable.append($("<p>").text(timeSince(tweet.created_at)));
     $rowTable.append($colTable);
     $colTable = $("<td>").attr("align","right");
     $img = $("<img>").addClass("footimg").attr("src","http://simpleicon.com/wp-content/uploads/flag.png");
@@ -122,15 +78,15 @@ const createTweetElement = (tweet) => {
   return $article;
 };
 
-
+// build the tweet article list and add it to the DOM
 const renderTweets = (tweets) =>{
 
 
-// refresh the tweet list on the screen
+// sort tweets in descending order on creation timestamp
    tweets.sort((a,b)=>{
     return b.created_at - a.created_at;
    });
-
+// refresh the tweet list on the screen
     $("article").remove();
 // go through the list of tweets, create a tweet and append to the list
     tweets.forEach((tweet) =>{
@@ -139,7 +95,7 @@ const renderTweets = (tweets) =>{
 
 };
 
-// ajax call to get the tweets
+// ajax call to GET the tweets
 const loadTweets = () =>{
 
       $.ajax({
@@ -152,12 +108,15 @@ const loadTweets = () =>{
 
 };
 
-
-// prevent the button from sending POST
- $("input").on("click", function(event){
+// ajax call to POST the new tweet
+$("input").on("click", function(event){
+  // prevent the button from sending POST
   event.preventDefault();
+  // need to pass context to the callback, save and use.
   const inputThis = this;
+  // emptiness check
   if($(this).siblings("textarea").val().length){
+     // max character check
      if(parseInt($(this).siblings(".counter").text()) >= 0 ){
      $.ajax({
        url: '/tweets',
@@ -175,7 +134,6 @@ const loadTweets = () =>{
   } else {
     alert("please enter something for your tweet");
   }
-
 
 });
 
