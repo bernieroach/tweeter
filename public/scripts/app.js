@@ -66,9 +66,9 @@ const createTweetElement = (tweet) => {
     $colTable.append($("<p>").text(timeSince(tweet.created_at)));
     $rowTable.append($colTable);
     $colTable = $("<td>").attr("align","right");
-    $img = $("<img>").addClass("footimg").attr("src","http://simpleicon.com/wp-content/uploads/flag.png");
+    $img = $("<img>").addClass("footimg").addClass("flag").attr("src","http://simpleicon.com/wp-content/uploads/flag.png");
     $colTable.append($img);
-    $img = $("<img>").addClass("footimg").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/45568-200.png");
+    $img = $("<img>").addClass("footimg").addClass("retweet").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/45568-200.png");
     $colTable.append($img);
     $img = $("<img>").addClass("footimg").addClass("like").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png");
     //$button = $("<button>").addClass("like").attr("type","button");
@@ -112,13 +112,13 @@ const loadTweets = () =>{
 
 
 // ajax call to POST the new tweet
-$(".new-tweet").on("click", function(event){
+$(".new-tweet input").on("click", function(event){
   // prevent the button from sending POST
   event.preventDefault();
   // need to pass context to the callback, save and use.
   const inputThis = this;
   // emptiness check
-  if($(this).siblings("textarea").text().length){
+  if($(this).siblings("textarea").val().length){
      // max character check
      if(parseInt($(this).siblings(".counter").text()) >= 0 ){
      $.ajax({
@@ -128,7 +128,7 @@ $(".new-tweet").on("click", function(event){
        success: function (succ) {
          console.log('Success: ', succ);
           loadTweets();
-          $(inputThis).siblings("textarea").text("");
+          $(inputThis).siblings("textarea").val("");
           }
         });
      } else {
@@ -140,11 +140,20 @@ $(".new-tweet").on("click", function(event){
 
 });
 
-    $("#tweet-feed").on("click", ".like" , function(event){
+$("#tweet-feed").on("click", ".like" , function(event){
 
   console.log("like");
 });
 
+$("#tweet-feed").on("click", ".flag" , function(event){
+
+  console.log("flag");
+});
+
+$("#tweet-feed").on("click", ".retweet" , function(event){
+
+  console.log("retweet");
+});
 
 // load the Tweets!
 loadTweets();
