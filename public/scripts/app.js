@@ -9,6 +9,7 @@
 $(document).ready(function(){
 
 
+const maxTweetChars = 140;
 
 // create a Tweet Element
 const createTweetElement = (tweet) => {
@@ -20,6 +21,7 @@ const createTweetElement = (tweet) => {
   let $img = "";
   let $body = "";
   let $footer = "";
+  let $button = "";
 
   if(tweet){
 
@@ -53,6 +55,8 @@ const createTweetElement = (tweet) => {
 
 // build the tweet
     $article.append($("<p>").text(tweet.content.text));
+    $article.data("handle", tweet.user.handle);
+    $article.data("created", tweet.created_at);
 
 // build the footer
     $footer = $("<footer>");
@@ -66,7 +70,9 @@ const createTweetElement = (tweet) => {
     $colTable.append($img);
     $img = $("<img>").addClass("footimg").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/45568-200.png");
     $colTable.append($img);
-    $img = $("<img>").addClass("footimg").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png");
+    $img = $("<img>").addClass("footimg").addClass("like").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png");
+    //$button = $("<button>").addClass("like").attr("type","button");
+
     $colTable.append($img);
     $rowTable.append($colTable);
     $hdTable.append($rowTable);
@@ -82,15 +88,11 @@ const createTweetElement = (tweet) => {
 const renderTweets = (tweets) =>{
 
 
-// sort tweets in descending order on creation timestamp
-   tweets.sort((a,b)=>{
-    return b.created_at - a.created_at;
-   });
 // refresh the tweet list on the screen
     $("article").remove();
 // go through the list of tweets, create a tweet and append to the list
     tweets.forEach((tweet) =>{
-    $('#tweets-container').append(createTweetElement(tweet));
+    $('#tweet-feed').prepend(createTweetElement(tweet));
       });
 
 };
@@ -108,14 +110,15 @@ const loadTweets = () =>{
 
 };
 
+
 // ajax call to POST the new tweet
-$("input").on("click", function(event){
+$(".new-tweet").on("click", function(event){
   // prevent the button from sending POST
   event.preventDefault();
   // need to pass context to the callback, save and use.
   const inputThis = this;
   // emptiness check
-  if($(this).siblings("textarea").val().length){
+  if($(this).siblings("textarea").text().length){
      // max character check
      if(parseInt($(this).siblings(".counter").text()) >= 0 ){
      $.ajax({
@@ -125,7 +128,7 @@ $("input").on("click", function(event){
        success: function (succ) {
          console.log('Success: ', succ);
           loadTweets();
-          $(inputThis).siblings("textarea").val("");
+          $(inputThis).siblings("textarea").text("");
           }
         });
      } else {
@@ -136,6 +139,12 @@ $("input").on("click", function(event){
   }
 
 });
+
+    $("#tweet-feed").on("click", ".like" , function(event){
+
+  console.log("like");
+});
+
 
 // load the Tweets!
 loadTweets();

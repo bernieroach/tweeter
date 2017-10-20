@@ -16,6 +16,17 @@ const app           = express();
 const {MongoClient} = require("mongodb");
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 
+// sass
+const sassMiddleware = require('node-sass-middleware')
+
+// has to be called be express.static call
+app.use(sassMiddleware({
+  src: './scss', // Location of SASS files
+  dest: './public/scss', // Compiled CSS location
+  prefix:  '/scss'       // URL path to be intercepted by the middleware and
+}))                     // compiled on the fly. When the browser tries to
+                        // GET /css/main.css, it compiles ./stylesheets/main.scss
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 

@@ -1,0 +1,150 @@
+.new-tweet {
+
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid #000000;
+  background-color: #eee;
+  padding-top: 1em;
+  padding-bottom: 3em;
+  padding-right: 3em;
+  padding-left:   3em;
+
+  h2 {
+   border-bottom: 2px solid;
+   width: 100%;
+   text-align: left;
+  }
+
+  .counter {
+    margin-right: 0px;
+    text-align: right;
+    float: right;
+    margin-top: 10px
+  }
+  input {
+    display: block;
+    text-align: left;
+    float: left;
+    margin-top:5px;
+  }
+  textarea {
+    width: 100%;
+    display: block;
+    padding: 5px;
+  }
+}
+
+.tweet header:hover {
+  opacity: 1;
+}
+
+.tweet:hover {
+  border: 1px solid rgba(0,0,0,1);
+}
+
+
+.tweet{
+  margin: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.5);
+  text-align: left;
+
+  .avatar{
+    width: 80px;
+    height: 80px;
+    margin: 0px;
+    vertical-align: top;
+  }
+
+  .handle {
+    text-align: right;
+    width: 110px;
+    vertical-align: top;
+    float: right;
+    display: inline;
+  }
+
+  body {
+    border: 0.5px solid rgba(0,0,0,0.5);
+    }
+
+  footer{
+    border-top: 1px solid #000000;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    * {
+      margin-bottom: 2px;
+    }
+
+    p {
+      margin: 0px;
+      font-size: 8pt;
+    }
+  }
+
+  h2 {
+   text-align: left;
+   margin: 2px;
+  }
+
+  * {
+    padding:5px;
+  }
+
+  header {
+    margin: 0px;
+    opacity: 0.5;
+    border-bottom : 1px solid #000000;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 5px;
+    background-color: #eee;
+
+    * {
+      display: block;
+      margin: 0px;
+    }
+    table {
+      width: inherit;
+      table-layout:fixed;
+      display: table;
+
+      tbody {
+        width: 100%;
+
+        tr {
+          width: 100%;
+        }
+
+        td {
+          word-wrap: break-word;
+          word-break: break-all;
+          vertical-align: top;
+        }
+      }
+    }
+  }
+}
+
+.tweet:hover .footimg{
+ opacity : 1;
+}
+
+.tweet:hover > header{
+ opacity : 1;
+}
+
+.footimg{
+  opacity : 0;
+  height : 20px;
+}
+
+.negNumber {
+  color: red;
+}
+
+.posNumber {
+  color: black;
+}
+
