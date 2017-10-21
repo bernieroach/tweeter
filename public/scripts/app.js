@@ -63,15 +63,15 @@ const createTweetElement = (tweet) => {
     $hdTable = $("<table>").attr("width","100%");
     $rowTable = $("<tr>");
     $colTable = $("<td>");
-    $colTable.append($("<p>").text(timeSince(tweet.created_at)));
+    $colTable.append($("<p>").text(`${timeSince(tweet.created_at)} / ${tweet.likes} likes` ));
     $rowTable.append($colTable);
     $colTable = $("<td>").attr("align","right");
     $img = $("<img>").addClass("footimg").addClass("flag").attr("src","http://simpleicon.com/wp-content/uploads/flag.png");
     $colTable.append($img);
     $img = $("<img>").addClass("footimg").addClass("retweet").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/45568-200.png");
     $colTable.append($img);
-    $img = $("<img>").addClass("footimg").addClass("like").attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png");
-    //$button = $("<button>").addClass("like").attr("type","button");
+    $img = $("<img>").addClass("footimg").addClass("like").data("liked",false)  .attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png");
+    $img.data("id",tweet._id);
 
     $colTable.append($img);
     $rowTable.append($colTable);
@@ -143,7 +143,17 @@ $(".new-tweet input").on("click", function(event){
 $("#tweet-feed").on("click", ".like" , function(event){
 
   console.log("like");
-});
+  // determine
+      $.ajax({
+        url: `/tweets/${$(this).data("id")}`,
+        data: "like=true",
+        method: 'POST',
+        success: function (succ) {
+
+        loadTweets();
+        }
+      });
+}) ;
 
 $("#tweet-feed").on("click", ".flag" , function(event){
 
