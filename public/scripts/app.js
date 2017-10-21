@@ -72,7 +72,7 @@ const createTweetElement = (tweet) => {
     $colTable.append($img);
     $img = $("<img>").addClass("footimg").addClass("like").data("liked",false)  .attr("src","https://d30y9cdsu7xlg0.cloudfront.net/png/1308-200.png");
     $img.data("id",tweet._id);
-
+    $img.data("liked",tweet.likeFlag);
     $colTable.append($img);
     $rowTable.append($colTable);
     $hdTable.append($rowTable);
@@ -142,11 +142,22 @@ $(".new-tweet input").on("click", function(event){
 
 $("#tweet-feed").on("click", ".like" , function(event){
 
-  console.log("like");
+ console.log("before",$(this).data("liked"));
+
+  if($(this).data("liked") === "true" ) {
+     console.log("value true");
+     $(this).data("liked","false");
+  } else {
+    console.log("value not true");
+     $(this).data("liked","true");
+  }
+
+  console.log("after", $(this).data("liked"));
+
   // determine
       $.ajax({
         url: `/tweets/${$(this).data("id")}`,
-        data: "like=true",
+        data: `like=${$(this).data("liked")}`,
         method: 'POST',
         success: function (succ) {
 

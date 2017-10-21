@@ -21,17 +21,21 @@ module.exports = function(DataHelpers) {
 
 
  tweetsRoutes.post("/:id", function(req, res) {
-     console.log(req.params.id);
-    console.log(req.body.text);
-    console.log(req.body.like);
+  let likeInc = 0;
+  if(req.body.like === "true"){
+      likeInc = 1;
+  } else if (req.body.like === "false") {
+      likeInc = -1;
+  }
+
 
     if (!req.params.id) {
       res.status(400).json({ error: 'invalid request: no data in POST body'});
       return;
     }
 
-    DataHelpers.updateTweet(req.params.id,1,0,0, (err) => {
-      console.log("update", req.params.id);
+    DataHelpers.updateTweet(req.params.id,likeInc, req.body.like ,0,0, (err) => {
+
       if (err) {
         res.status(500).json({ error: err.message });
       } else {

@@ -18,12 +18,13 @@ module.exports = function makeDataHelpers(db) {
       db.collection("tweets").find().toArray(callback);
     },
 
-    updateTweet: function(id, incLike, incFlag, incRetweet, callback) {
-      console.log(`ObjectId("${id}")`);
+    updateTweet: function(id, incLike, likeFlag, incFlag, incRetweet, callback) {
       db.collection("tweets").updateOne( { "_id" : ObjectID(id) },
                                          { $inc : { "likes"  : incLike,
                                                     "incFlag" : incFlag,
-                                                    "incRetweet" : incRetweet } },
+                                                    "incRetweet" : incRetweet },
+                                            $set : { "likeFlag" : likeFlag }
+                                          },
                                           callback );
     }
   };
