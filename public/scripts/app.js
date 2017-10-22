@@ -110,7 +110,6 @@ const loadTweets = () =>{
 
 };
 
-
 // ajax call to POST the new tweet
 $(".new-tweet input").on("click", function(event){
   // prevent the button from sending POST
@@ -127,8 +126,9 @@ $(".new-tweet input").on("click", function(event){
        method: 'POST',
        success: function (succ) {
          console.log('Success: ', succ);
-          loadTweets();
+
           $(inputThis).siblings("textarea").val("");
+          loadTweets();
           }
         });
      } else {

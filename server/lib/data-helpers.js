@@ -20,10 +20,8 @@ module.exports = function makeDataHelpers(db) {
 
     updateTweet: function(id, incLike, likeFlag, incFlag, incRetweet, callback) {
       db.collection("tweets").updateOne( { "_id" : ObjectID(id) },
-                                         { $inc : { "likes"  : incLike,
-                                                    "incFlag" : incFlag,
-                                                    "incRetweet" : incRetweet },
-                                            $set : { "likeFlag" : likeFlag }
+                                         { $inc : { "likes"  : incLike },
+                                           $set : { "likeFlag" : likeFlag }
                                           },
                                           callback );
     }

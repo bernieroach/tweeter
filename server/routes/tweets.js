@@ -57,6 +57,8 @@ module.exports = function(DataHelpers) {
       content: {
         text: req.body.text
       },
+      likes : 0,
+      likeFlag : "false",
       created_at: Date.now()
     };
 
