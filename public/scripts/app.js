@@ -125,7 +125,6 @@ $(".new-tweet input").on("click", function(event){
        data: $(this).parent().serialize(),
        method: 'POST',
        success: function (succ) {
-         console.log('Success: ', succ);
 
           $(inputThis).siblings("textarea").val("");
           loadTweets();
@@ -142,17 +141,12 @@ $(".new-tweet input").on("click", function(event){
 
 $("#tweet-feed").on("click", ".like" , function(event){
 
- console.log("before",$(this).data("liked"));
 
   if($(this).data("liked") === "true" ) {
-     console.log("value true");
      $(this).data("liked","false");
   } else {
-    console.log("value not true");
      $(this).data("liked","true");
   }
-
-  console.log("after", $(this).data("liked"));
 
   // determine
       $.ajax({
@@ -167,13 +161,11 @@ $("#tweet-feed").on("click", ".like" , function(event){
 }) ;
 
 $("#tweet-feed").on("click", ".flag" , function(event){
-
-  console.log("flag");
+// flag click
 });
 
 $("#tweet-feed").on("click", ".retweet" , function(event){
-
-  console.log("retweet");
+// retweet click
 });
 
 // load the Tweets!
