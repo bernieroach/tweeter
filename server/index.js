@@ -6,6 +6,7 @@
 
 "use strict";
 
+require('dotenv').config();
 // Basic express setup:
 const PORT          = 8080;
 const express       = require("express");
@@ -14,7 +15,7 @@ const app           = express();
 
 // mongo db
 const {MongoClient} = require("mongodb");
-const MONGODB_URI = "mongodb://localhost:27017/tweeter";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // sass
 const sassMiddleware = require('node-sass-middleware')
